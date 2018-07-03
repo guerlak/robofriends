@@ -1,14 +1,23 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Hello from './Hello';
+import CardList from './CardList';
 import 'tachyons';
 import registerServiceWorker from './registerServiceWorker';
+import { robots } from './robots';
 
-var username = 'Utilizador';
+// var username = 'Utilizador';
 
-ReactDOM.render(<App/>, document.getElementById('root'));
-ReactDOM.render(<Hello greeting={'Welcome to MyNetpress '+ username + ' !!!'}/>, document.getElementById('mancheteTitle'));
+
+ReactDOM.render(
+
+    <CardList robots={robots}/>
+    
+     ,document.getElementById('root')
+    
+);
+
+// ReactDOM.render(<Hello greeting={'Welcome to MyNetpress '+ username + ' !!!'}/>, document.getElementById('mancheteTitle'));
 
 registerServiceWorker();
