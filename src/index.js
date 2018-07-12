@@ -1,19 +1,25 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createLogger} from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './containers/App';
 import "./containers/App.css";
 import 'tachyons';
 import registerServiceWorker from './registerServiceWorker';
+import {searchRobots, requestRobots} from './reducers';
 
-// var username = 'Utilizador';
+const logger = createLogger();
+const rootReducer = combineReducers({searchRobots, requestRobots})
+
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render(
-    <App/>
-     ,document.getElementById('root')
+    <Provider store={store}>
+        <App />
+     </Provider> ,document.getElementById('root')
 );
-
-// ReactDOM.render(<Hello greeting={'Welcome to MyNetpress '+ username + ' !!!'}/>, document.getElementById('mancheteTitle'));
-
 registerServiceWorker();
